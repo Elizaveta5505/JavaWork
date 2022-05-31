@@ -15,50 +15,52 @@ a 10
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.io.BufferedReader;
 
 public class Ex1 {
     static String numA = "";
     static String numB = "";
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader fr = new BufferedReader(new FileReader("JavaWork/Example1/input.txt"));
-        String str = ""; 
-        Scanner scanner = new Scanner(fr);
-
-        if (str.contains("b")) {
-            String line = scanner.nextLine();
-            String [] num = line.split(" ");
-            numB = num[2];
+    public void reader() throws Exception {
+        BufferedReader fr = new BufferedReader(new FileReader("Example1/input.txt"));
+        String str; 
+        
+        while((str= fr.readLine()) != null) {
+            if (str.contains("b")) {
+                String [] num = str.split(" ");
+                numB = num[2];
+            }
+        
+            else if (str.contains("a")){
+                String [] num1 = str.split(" ");
+                numA = num1[2];
+            }
+            
+            else {
+                System.out.print("Некорректные данные");
+            }
         }
         
-        else if (str.contains("a")){
-            String line = scanner.nextLine();
-            String [] num = line.split(" ");
-            numA = num[2];
-        }
-
-        scanner.close();
+        fr.close();
     }
 
-    public int numA () {
-        int a = Integer.parseInt(numA);
+    public double numA () {
+        double a = Double.parseDouble(numA);
         return a;
     }
 
-    public int numB () {
-        int b = Integer.parseInt(numB);
+    public double numB () {
+        double b = Double.parseDouble(numB);
         return b;
     }
 
-    public void output (int a, int b) {
-        try (FileWriter file = new FileWriter("JavaWork/Example1/out.txt", false)) {
+    public void output (double a, double b) {
+        try (FileWriter file = new FileWriter("Example1/out.txt", false)) {
             if (a == 0 & b == 0) {
                 file.write("Результат неопределён");
                 file.flush();
             } else {
-                file.write(String.format("%d ^ %d = %0.f", a, b, Math.pow(a,b)));
+                file.write(String.format("%.0f ^ %.0f = %.0f", a, b, Math.pow(a,b)));
                 file.flush();
             }
         }
@@ -68,5 +70,10 @@ public class Ex1 {
         }
         
     }
- 
+
+    public static void main(String[] args) throws Exception {
+        Ex1 example = new Ex1();
+        example.reader();
+        example.output(example.numA(), example.numB());
+    }
 }
