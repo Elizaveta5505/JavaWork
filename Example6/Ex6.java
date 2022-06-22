@@ -1,4 +1,4 @@
-package Example6;
+package JavaWork.Example6;
 /*Реализовать алгоритм сортировки слиянием*/
 
 import java.util.Arrays;
