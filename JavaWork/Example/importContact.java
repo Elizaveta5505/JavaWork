@@ -22,9 +22,10 @@ public class importContact {
         String fname = in.next();
         System.out.print("Input number : ");
         String number = in.next();
-
+        
+        in.close();
+        
         return new Contact(id, fname, number);
-
     }
 
 }

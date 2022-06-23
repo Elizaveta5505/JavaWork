@@ -1,26 +1,11 @@
 package JavaWork.Example;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class exportContact {
-    static void expContactRow(String path) throws FileNotFoundException {
-        File file = new File(path);
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] words = line.split("\\ ");
-            System.out.println(Arrays.toString(words));
-        }
-
-        scanner.close();
-    }
-
     static ArrayList<String> expContactRows(String path) throws FileNotFoundException {
             File file = new File(path);
             Scanner scanner = new Scanner(file);
@@ -51,7 +36,5 @@ public class exportContact {
             }
 
         return new Contact(idf, name, number);
-
     }
-
 }
